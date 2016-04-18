@@ -47,6 +47,14 @@ public class Discovery {
 
 			_actions.add(action);
 		}
+
+		JSONArray types = jsonObj.getJSONArray("types");
+
+		for (int i = 0; i < types.length(); i++) {
+			Type type = new Type(types.getJSONObject(i));
+
+			_types.add(type);
+		}
 	}
 
 	public List<Action> getActions() {
@@ -61,8 +69,13 @@ public class Discovery {
 		return _discover;
 	}
 
+	public List<Type> getTypes() {
+		return _types;
+	}
+
 	private ArrayList<Action> _actions = new ArrayList<Action>();
 	private String _basePath;
 	private ArrayList<String> _discover = new ArrayList<String>();
+	private List<Type> _types = new ArrayList<Type>();
 
 }
