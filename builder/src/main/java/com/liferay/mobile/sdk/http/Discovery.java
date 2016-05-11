@@ -51,7 +51,15 @@ public class Discovery {
 		JSONArray types = jsonObj.getJSONArray("types");
 
 		for (int i = 0; i < types.length(); i++) {
-			Type type = new Type(types.getJSONObject(i));
+			JSONObject typeJsonObject = types.getJSONObject(i);
+
+			String typeName = typeJsonObject.getString("type");
+
+			if (typeName.startsWith("com.liferay") || typeName.startsWith("java")) {
+				continue;
+			}
+
+			Type type = new Type(typeJsonObject);
 
 			_types.add(type);
 		}
